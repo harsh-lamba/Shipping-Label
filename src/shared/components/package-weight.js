@@ -1,5 +1,7 @@
 import React from "react";
 
+import { FormField } from "./form-field";
+
 export class PackageWeight extends React.Component {
   state = {
     weight: ""
@@ -8,15 +10,12 @@ export class PackageWeight extends React.Component {
     const { weight } = this.state;
     return (
       <form>
-        <label for="weight">
-          Package Weight
-          <input
-            id="weight"
-            type="text"
-            value={weight}
-            onChange={this.onInputValueChange}
-          />
-        </label>
+        <FormField
+          id="weight"
+          label="Package Weight"
+          onValueChange={this.onInputValueChange}
+        />
+        {this.state.weight}
         <div>
           <button onClick={this.onPreviousClick}>Previous</button>
           <button onClick={this.onNextClick}>Next</button>
@@ -26,7 +25,7 @@ export class PackageWeight extends React.Component {
   }
 
   onInputValueChange = e => {
-    this.setState({ package: e.target.value });
+    this.setState({ weight: e.target.value });
   };
 
   onPreviousClick = () => {};
