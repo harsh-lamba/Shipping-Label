@@ -1,21 +1,17 @@
 import React from "react";
 
 export class FormField extends React.Component {
-  state = {
-    value: ""
-  };
-
   render() {
+    const {value=''} = this.props; 
     return (
       <label key={this.props.id}>
         {this.props.label}
-        <input type="text" value={this.state.value} onChange={this.onChange} />
+        <input type="text" value={this.props.value} onChange={this.onChange} />
       </label>
     );
   }
 
   onChange = e => {
-    this.setState({ value: e.target.value });
-    this.props.onValueChange(e.target.value)
+    this.props.onValueChange(e.target.value);
   };
 }

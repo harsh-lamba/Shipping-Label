@@ -24,8 +24,8 @@ export class PackageWeight extends React.Component {
     );
   }
 
-  onInputValueChange = e => {
-    this.setState({ weight: e.target.value });
+  onInputValueChange = value => {
+    this.setState({ weight: value });
   };
 
   onPreviousClick = () => {};

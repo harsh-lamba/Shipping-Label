@@ -9,6 +9,7 @@ export class ShippingLabel extends React.Component {
     return (
       <div>
         Wizrad Component
+        <PackageWeight />
         <ReceiverAddress />
         <SenderAddress />
       </div>

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { FormField } from "./form-field";
+
 export class ReceiverAddress extends React.Component {
   state = {
     receiver: ""
@@ -8,15 +10,11 @@ export class ReceiverAddress extends React.Component {
     const { receiver } = this.state;
     return (
       <form>
-        <label for="receiver">
-          Receiver Address
-          <input
-            id="receiver"
-            type="text"
-            value={receiver}
-            onChange={this.onInputValueChange}
-          />
-        </label>
+        <FormField
+          id="receiver"
+          label="Receiver Address:"
+          onValueChange={this.onInputValueChange}
+        />
         {this.state.receiver}
         <div>
           <button onClick={this.onPreviousClick}>Previous</button>
@@ -26,8 +24,8 @@ export class ReceiverAddress extends React.Component {
     );
   }
 
-  onInputValueChange = e => {
-    this.setState({ receiver: e.target.value });
+  onInputValueChange = value => {
+    this.setState({ receiver: value });
   };
 
   onPreviousClick = () => {};
