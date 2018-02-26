@@ -35,9 +35,9 @@ export class ShippingLabel extends React.Component {
     });
   }
 
+
   onNextClick(e) {
     e.preventDefault();
-    console.log('here');
     this.setState({
       currentStep:
         this.state.currentStep === this.props.steps.length - 1
