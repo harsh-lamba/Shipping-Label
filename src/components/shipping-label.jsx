@@ -17,10 +17,8 @@ export class ShippingLabel extends React.Component {
         <DisplaySteps steps={steps} />
         {
           <CurrentComponent
-            onPreviousClick={() => this.onPreviousClick.bind(this)}
-            onNextClick={() => {
-              this.onNextClick.call(this);
-            }}
+            onPreviousClick={this.onPreviousClick.bind(this)}
+            onNextClick={this.onNextClick.bind(this)}
           />
         }
       </div>
@@ -28,6 +26,7 @@ export class ShippingLabel extends React.Component {
   }
 
   onPreviousClick(e) {
+    e.preventDefault();
     this.setState({
       currentStep:
         this.state.currentStep === 0
@@ -36,7 +35,9 @@ export class ShippingLabel extends React.Component {
     });
   }
 
-  onNextClick = e => {
+
+  onNextClick(e) {
+    e.preventDefault();
     this.setState({
       currentStep:
         this.state.currentStep === this.props.steps.length - 1

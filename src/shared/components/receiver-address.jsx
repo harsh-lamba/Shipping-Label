@@ -16,8 +16,10 @@ export class ReceiverAddress extends React.Component {
           onValueChange={this.onInputValueChange}
         />
         <div>
-          <button onClick={this.onPreviousClick}>Previous</button>
-          <button onClick={this.onNextClick}>Next</button>
+          <button onClick={this.props.onPreviousClick}>Previous</button>
+          <button onClick={this.props.onNextClick.bind(this.state.receiver)}>
+            Next
+          </button>
         </div>
       </form>
     );
@@ -25,13 +27,5 @@ export class ReceiverAddress extends React.Component {
 
   onInputValueChange = value => {
     this.setState({ receiver: value });
-  };
-
-  onPreviousClick = () => {
-    this.props.onPreviousClick();
-  };
-
-  onNextClick = () => {
-    this.props.onNextClick();
   };
 }

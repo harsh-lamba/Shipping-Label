@@ -16,8 +16,10 @@ export class SenderAddress extends React.Component {
           onValueChange={this.onInputValueChange}
         />
         <div>
-          <button onClick={() => this.props.onPreviousClick}>Previous</button>
-          <button onClick={() => this.props.onNextClick}>Next</button>
+          <button onClick={this.props.onPreviousClick}>Previous</button>
+          <button onClick={this.props.onNextClick.bind(this.state.sender)}>
+            Next
+          </button>
         </div>
       </form>
     );
