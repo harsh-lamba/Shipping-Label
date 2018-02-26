@@ -15,7 +15,6 @@ export class PackageWeight extends React.Component {
           label="Package Weight"
           onValueChange={this.onInputValueChange}
         />
-        {this.state.weight}
         <div>
           <button onClick={this.onPreviousClick}>Previous</button>
           <button onClick={this.onNextClick}>Next</button>
@@ -28,7 +27,11 @@ export class PackageWeight extends React.Component {
     this.setState({ weight: value });
   };
 
-  onPreviousClick = () => {};
+  onPreviousClick = () => {
+    this.props.onPreviousClick();
+  };
 
-  onNextClick = () => {};
+  onNextClick = () => {
+    this.props.onNextClick();
+  };
 }
