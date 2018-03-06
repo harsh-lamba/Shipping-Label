@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { DisplaySteps } from "../../../shared/components/display-steps";
+import WizardStep from "../wizard-step/wizard-step";
 
 export class Wizard extends Component {
   static propTypes = {
@@ -25,52 +26,35 @@ export class Wizard extends Component {
       <div>
         <h1>{title}</h1>
         <DisplaySteps steps={steps} />
-        <CurrentComponent ref={step => (this.stepRef = step)} />
-        <div>
-          {
-            this.state.currentStep !== 0 && (
-            <button onClick={this.onPreviousClick}>Previous</button>
-          )}
-          <button onClick={this.onNextClick}>
-            {
-             currentStep === stepsLength?
-              <span>Complete</span> :
-              <span>Next</span>
-            }
-          </button>
-        </div>
+        <WizardStep
+          startIndex={0}
+          endIndex={stepsLength}
+          currentIndex={currentStep}
+          onPreviousClick={this.onPreviousClick}
+          onNextClick={this.onNextClick}
+        >
+          <CurrentComponent ref={step => (this.stepRef = step)} />
+        </WizardStep>
       </div>
     );
   }
 
-  onPreviousClick = e => {
-    e.preventDefault();
-    this.setState({
-      currentStep:
-        this.state.currentStep === 0
-          ? this.state.currentStep
-          : this.state.currentStep - 1
-    });
+  onPreviousClick = index => {
+    this.setState({ currentStep: index });
   };
 
-  onNextClick = e => {
-    e.preventDefault();
+  onNextClick = index => {
+    this.setState({ currentStep: index });
+
     let stepValue = this.state.context.slice();
-    console.log(stepValue);
-    stepValue[this.state.currentStep] = this.stepRef.state;
-    this.setState({
-      currentStep:
-        this.state.currentStep === this.props.steps.length - 1
-          ? this.state.currentStep
-          : this.state.currentStep + 1
-    });
+    stepValue[index] = this.stepRef.state;
 
     this.setState({
       context: [...stepValue]
     });
 
-    if (this.state.currentStep === (this.props.steps.length-1)){
-      this.props.onComplete(stepValue)
+    if (this.state.currentStep === this.props.steps.length - 1) {
+      this.props.onComplete(stepValue);
     }
   };
 }
