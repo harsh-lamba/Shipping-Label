@@ -15,12 +15,6 @@ export class PackageWeight extends React.Component {
           label="Package Weight"
           onValueChange={this.onInputValueChange}
         />
-        <div>
-          <button onClick={this.props.onPreviousClick}>Previous</button>
-          <button onClick={this.props.onNextClick.bind(this.state.weight)}>
-            Next
-          </button>
-        </div>
       </form>
     );
   }
